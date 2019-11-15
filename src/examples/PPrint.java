@@ -13,8 +13,8 @@ public class PPrint {
 				result.append("\n ");
 			result.append(elem);
 		}
+		if(c.size() != 1)
 			result.append("\n ");
-			if(c.size() != 1)
 		result.append("]");
 		return result.toString();
 	}
