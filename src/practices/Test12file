@@ -1,0 +1,28 @@
+1:package practices;
+2:
+3:import java.io.BufferedReader;
+4:import java.io.FileReader;
+5:import java.io.IOException;
+6:import java.io.PrintWriter;
+7:import java.util.LinkedList;
+8:
+9:import examples.BufferedInputFile;
+10:
+11:public class Test12 {
+12:	public static void main(String[] args) throws IOException {
+13:		args = new String[]{"F:\\think_in_java_git\\java_io_system\\src\\practices\\Test12.java","F:\\think_in_java_git\\java_io_system\\src\\practices\\Test12file"};
+14:		BufferedReader in = new BufferedReader(new FileReader(args[0]));
+15:		LinkedList<String> ll = new LinkedList<String>();
+16:		String s;
+17:		int lineCount = 1;
+18:		while((s = in.readLine()) != null)
+19:			ll.add(lineCount++ + ":" +s);
+20:		in.close();
+21:		PrintWriter out = new PrintWriter(args[1]);
+22:		for (String string : ll) {
+23:			out.println(string);
+24:		}
+25:		out.close();
+26:		System.out.println(BufferedInputFile.read(args[1]));
+27:	}
+28:}

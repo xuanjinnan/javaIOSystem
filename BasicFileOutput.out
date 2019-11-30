@@ -1,0 +1,22 @@
+1:package examples;
+2:
+3:import java.io.BufferedReader;
+4:import java.io.BufferedWriter;
+5:import java.io.FileWriter;
+6:import java.io.IOException;
+7:import java.io.PrintWriter;
+8:import java.io.StringReader;
+9:
+10:public class BasicFileOutput {
+11:	static String file = "BasicFileOutput.out";
+12:	public static void main(String[] args) throws IOException {
+13:		BufferedReader in = new BufferedReader(new StringReader(BufferedInputFile.read("F:\\think_in_java_git\\java_io_system\\src\\examples\\BasicFileOutput.java")));
+14:		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+15:		int lineCount = 1;
+16:		String s;
+17:		while((s = in.readLine()) != null)
+18:			out.print(lineCount++ + ":" + s + "\n");
+19:		out.close();
+20:		System.out.println(BufferedInputFile.read(file));
+21:	}
+22:}

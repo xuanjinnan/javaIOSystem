@@ -1,0 +1,33 @@
+1:package practices;
+2:
+3:import java.io.File;
+4:import java.io.FilenameFilter;
+5:import java.util.Arrays;
+6:import java.util.Collections;
+7:import java.util.regex.Pattern;
+8:
+9:import net.mindview.util.TextFile;
+10:
+11:public class DirList1a {
+12:	public static void main(String[] args) {
+13:		File path = new File(".");
+14:		final String[] list;
+15:		if(args.length <2){
+16:			list = path.list();
+17:			System.out.println("Usage: enter filtering regex");
+18:			System.out.println("followed by words,one or more of which each file must contain");
+19:		}else{
+20:			list = path.list(new FilenameFilter(){
+21:				private Pattern pattern = Pattern.compile(args[0]);
+22:				@Override
+23:				public boolean accept(File dir, String name) {
+24:					return pattern.matcher(name).matches() &&
+25:							!Collections.disjoint(Arrays.asList(args).subList(1, args.length), new TextFile(name,"\\W+"));
+26:				}});
+27:		}
+28:		Arrays.sort(list,String.CASE_INSENSITIVE_ORDER);
+29:		for (String dirItem : list) {
+30:			System.out.println(dirItem);
+31:		}
+32:	}
+33:}
